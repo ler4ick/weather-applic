@@ -8,6 +8,7 @@ import { AutocompleteService } from '../autocomplete.service';
   styleUrl: './weather.component.scss',
 })
 export class WeatherComponent {
+  showSuggestions = false;
   myWeather: any;
   temperature: number = 0;
   pressure: number = 0;
@@ -48,6 +49,15 @@ export class WeatherComponent {
     this.autocompleteService.getSuggestions(this.city).subscribe((response) => {
       this.suggestions = response.suggestions;
     });
+  }
+
+  toggleSuggestions() {
+    this.showSuggestions = !this.showSuggestions;
+  }
+
+  selectSuggestion(suggestion: { value: string }, event: MouseEvent) {
+    (event.target as HTMLInputElement).value = suggestion.value;
+    this.toggleSuggestions();
   }
 
   getSuggestions() {

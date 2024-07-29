@@ -10,6 +10,7 @@
       type="text"
       [(ngModel)]="city"
       (input)="onInputChange()"
+      (click)="toggleSuggestions()"
       id="address"
       name="address"
       class="address"
@@ -17,8 +18,11 @@
     <div class="time">20:30</div>
   </div>
   <div class="suggestions-container">
-    <div class="suggestions">
-      <div *ngFor="let suggestion of this.getSuggestions()">
+    <div class="suggestions" *ngIf="showSuggestions">
+      <div
+        *ngFor="let suggestion of this.getSuggestions()"
+        (click)="selectSuggestion(suggestion, $event)"
+      >
         <div class="suggestion">{{ suggestion.value }}</div>
       </div>
     </div>
