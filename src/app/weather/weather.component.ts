@@ -13,12 +13,15 @@ export class WeatherComponent {
   humidity: number = 0;
   feelsLikeTemp: number = 0;
   summary: string = '';
-  city: string = '';
+  lat: number = 0;
+  lon: number = 0;
+  city: string = 'Minneapolis';
+  units: string = 'imperial';
 
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit(): void {
-    this.weatherService.getWeather().subscribe({
+    this.weatherService.getWeather(this.city, this.units).subscribe({
       next: (res) => {
         console.log(res);
         this.myWeather = res;
