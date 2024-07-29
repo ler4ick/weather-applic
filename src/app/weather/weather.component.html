@@ -6,13 +6,6 @@
 </head>
 <div class="container">
   <div class="row_class">
-    <!-- <input
-      type="search"
-      [(ngModel)]="searchTerm"
-      (input)="search()"
-      placeholder="Поиск"
-    /> -->
-    <!-- <input id="address" name="address" class="address" type="text" /> -->
     <input
       type="text"
       [(ngModel)]="city"
@@ -22,10 +15,11 @@
       class="address"
     />
     <div class="time">20:30</div>
-
-    <div class="row_class__suggestions">
+  </div>
+  <div class="suggestions-container">
+    <div class="suggestions">
       <div *ngFor="let suggestion of this.getSuggestions()">
-        <span>{{ suggestion.value }}</span>
+        <div class="suggestion">{{ suggestion.value }}</div>
       </div>
     </div>
   </div>
