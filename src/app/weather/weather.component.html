@@ -1,3 +1,9 @@
+<head>
+  <link
+    href="http://cdn.jsdelivr.net/npm/suggestions-jquery@22.6.0/dist/css/suggestions.min.css"
+    rel="stylesheet"
+  />
+</head>
 <div class="container">
   <div class="row_class">
     <!-- <input
@@ -6,8 +12,22 @@
       (input)="search()"
       placeholder="Поиск"
     /> -->
-    <input id="address" name="address" class="address" type="text" />
+    <!-- <input id="address" name="address" class="address" type="text" /> -->
+    <input
+      type="text"
+      [(ngModel)]="city"
+      (input)="onInputChange()"
+      id="address"
+      name="address"
+      class="address"
+    />
     <div class="time">20:30</div>
+
+    <div class="row_class__suggestions">
+      <div *ngFor="let suggestion of this.getSuggestions()">
+        <span>{{ suggestion.value }}</span>
+      </div>
+    </div>
   </div>
 
   <span class="city-name" id="selected-city"> {{ city }}</span>

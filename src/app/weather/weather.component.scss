@@ -9,6 +9,7 @@
   background: linear-gradient(to bottom, #5f97cc, #e0ebf1);
 
   .row_class {
+    position: relative;
     display: flex;
     flex-direction: row;
     margin: auto;

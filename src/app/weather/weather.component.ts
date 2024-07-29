@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../weather.service';
+import { AutocompleteService } from '../autocomplete.service';
 
 @Component({
   selector: 'app-weather',
@@ -15,10 +16,14 @@ export class WeatherComponent {
   summary: string = '';
   lat: number = 0;
   lon: number = 0;
-  city: string = 'Minneapolis';
+  city: string = ' ';
   units: string = 'imperial';
+  suggestions: any[] = [];
 
-  constructor(private weatherService: WeatherService) {}
+  constructor(
+    private weatherService: WeatherService,
+    private autocompleteService: AutocompleteService
+  ) {}
 
   ngOnInit(): void {
     this.weatherService.getWeather(this.city, this.units).subscribe({
@@ -37,5 +42,15 @@ export class WeatherComponent {
 
       complete: () => console.info('API call completed'),
     });
+  }
+
+  onInputChange() {
+    this.autocompleteService.getSuggestions(this.city).subscribe((response) => {
+      this.suggestions = response.suggestions;
+    });
+  }
+
+  getSuggestions() {
+    return this.suggestions;
   }
 }
