@@ -9,6 +9,11 @@ import { WeatherService } from '../weather.service';
 export class WeatherComponent {
   myWeather: any;
   temperature: number = 0;
+  pressure: number = 0;
+  humidity: number = 0;
+  feelsLikeTemp: number = 0;
+  summary: string = '';
+  city: string = '';
 
   constructor(private weatherService: WeatherService) {}
 
@@ -19,6 +24,10 @@ export class WeatherComponent {
         this.myWeather = res;
         console.log(this.myWeather);
         this.temperature = this.myWeather.main.temp;
+        this.pressure = this.myWeather.main.pressure;
+        this.feelsLikeTemp = this.myWeather.main.feels_like;
+        this.humidity = this.myWeather.main.humidity;
+        this.summary = this.myWeather.weather[0].main;
       },
 
       error: (error) => console.log(error.message),
