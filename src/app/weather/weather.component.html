@@ -6,6 +6,15 @@
 </head>
 <div class="container">
   <div class="row_class">
+    <!-- <input
+      type="text"
+      [(ngModel)]="city"
+      (input)="onInputChange()"
+      (click)="toggleSuggestions()"
+      id="address"
+      name="address"
+      class="address"
+    /> -->
     <input
       type="text"
       [(ngModel)]="city"
@@ -21,7 +30,7 @@
     <div class="suggestions" *ngIf="showSuggestions">
       <div
         *ngFor="let suggestion of this.getSuggestions()"
-        (click)="selectSuggestion(suggestion, $event)"
+        (click)="selectSuggestion(suggestion)"
       >
         <div class="suggestion">{{ suggestion.value }}</div>
       </div>

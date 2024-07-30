@@ -17,7 +17,7 @@ export class WeatherComponent {
   summary: string = '';
   lat: number = 0;
   lon: number = 0;
-  city: string = ' ';
+  city: string = '';
   units: string = 'imperial';
   suggestions: any[] = [];
 
@@ -48,6 +48,7 @@ export class WeatherComponent {
   onInputChange() {
     this.autocompleteService.getSuggestions(this.city).subscribe((response) => {
       this.suggestions = response.suggestions;
+      this.toggleSuggestions(); //
     });
   }
 
@@ -55,8 +56,13 @@ export class WeatherComponent {
     this.showSuggestions = !this.showSuggestions;
   }
 
-  selectSuggestion(suggestion: { value: string }, event: MouseEvent) {
-    (event.target as HTMLInputElement).value = suggestion.value;
+  // selectSuggestion(suggestion: { value: string }, event: MouseEvent) {
+  //   (event.target as HTMLInputElement).value = suggestion.value;
+  //   suggestion.value = this.city;
+  //   this.toggleSuggestions();
+  // }
+  selectSuggestion(suggestion: { value: string }) {
+    this.city = suggestion.value;
     this.toggleSuggestions();
   }
 
