@@ -1,8 +1,8 @@
 <head>
-  <link
+  <!-- <link
     href="http://cdn.jsdelivr.net/npm/suggestions-jquery@22.6.0/dist/css/suggestions.min.css"
     rel="stylesheet"
-  />
+  /> -->
 </head>
 <div class="container">
   <div class="row_class">
@@ -16,7 +16,8 @@
       class="address"
     /> -->
     <input
-      type="text"
+      type="search"
+      placeholder="Введите название города"
       [(ngModel)]="city"
       (input)="onInputChange()"
       (click)="toggleSuggestions()"
@@ -24,7 +25,7 @@
       name="address"
       class="address"
     />
-    <div class="time">20:30</div>
+    <div class="time">{{ this.getTimeFromTimezone(timezone) }}</div>
   </div>
   <div class="suggestions-container">
     <div class="suggestions" *ngIf="showSuggestions">
@@ -37,52 +38,58 @@
     </div>
   </div>
 
-  <span class="city-name" id="selected-city"> {{ city }}</span>
-  <table border="0" cellpadding="0" cellspacing="0">
+  <span class="city-name" id="selected-city"> {{ selectedCity }}</span>
+  <div align="center"><img src="{{ iconURL }}" alt="" /></div>
+  <div class="temp">Температура</div>
+  <div class="temp">
+    <b>{{ temperature }}°C</b>
+  </div>
+  <table>
     <tbody>
       <tr>
-        <td style="border-bottom: 1px solid #4a7bb3">Утро</td>
-        <td
-          style="
-            border-bottom: 1px solid #4a7bb3;
-            border-left: 1px solid #4a7bb3;
-          "
-        >
-          День
-        </td>
-        <td
-          style="
-            border-bottom: 1px solid #4a7bb3;
-            border-left: 1px solid #4a7bb3;
-          "
-        >
-          Вечер
-        </td>
-        <td
-          style="
-            border-bottom: 1px solid #4a7bb3;
-            border-left: 1px solid #4a7bb3;
-          "
-        >
-          Ночь
-        </td>
+        <td>Ощущается как</td>
+        <td>Макисмальная</td>
+        <td>Минимальная</td>
       </tr>
       <tr>
-        <td>23</td>
-        <td style="border-left: 1px solid #4a7bb3">30</td>
-        <td style="border-left: 1px solid #4a7bb3">20</td>
-        <td style="border-left: 1px solid #4a7bb3">18</td>
+        <td>{{ feelsLikeTemp }}°C</td>
+        <td>{{ temp_max }}°C</td>
+        <td>{{ temp_min }}°C</td>
       </tr>
     </tbody>
   </table>
-
-  <div class="card-body">
-    <p class="card-text">Summary: {{ summary }}</p>
-    <p class="card-text">Temp: {{ temperature }} F</p>
-    <p class="card-text">Feels like: {{ feelsLikeTemp }} F</p>
-    <p class="card-text">Pressure: {{ pressure }} hPa</p>
-    <p class="card-text">Humidity: {{ humidity }} %</p>
-  </div>
+  <table>
+    <tbody>
+      <tr>
+        <td>Восход</td>
+        <td>Закат</td>
+      </tr>
+      <tr>
+        <td>{{ this.getTimeFromTimezone(sunrise) }}</td>
+        <td>{{ this.getTimeFromTimezone(sunset) }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <table>
+    <tbody>
+      <tr>
+        <td>Скорость ветра</td>
+        <td>Давление</td>
+      </tr>
+      <tr>
+        <td>{{ wind_speed }}м/с</td>
+        <td>{{ pressure }}hПа</td>
+      </tr>
+      <tr>
+        <td>Влажность</td>
+        <td>Уровень моря</td>
+      </tr>
+      <tr>
+        <td>{{ humidity }}%</td>
+        <td>{{ sea_level }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="http://cdn.jsdelivr.net/npm/suggestions-jquery@22.6.0/dist/js/jquery.suggestions.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="http://cdn.jsdelivr.net/npm/suggestions-jquery@22.6.0/dist/js/jquery.suggestions.min.js"></script> -->

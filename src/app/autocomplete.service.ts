@@ -26,7 +26,6 @@ export class AutocompleteService {
       },
       query,
     };
-    console.log('Bibs' + this.http.post<any>(this.apiUrl, body, { headers }));
     return this.http.post<any>(this.apiUrl, body, { headers });
   }
 }
